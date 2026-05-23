@@ -15,10 +15,10 @@ app.add_middleware(
 
 load_dotenv()
 
-DEVICE_ID = os.getenv(DEVICE_ID)
-DEVICE_IP = os.getenv(DEVICE_IP)
-LOCAL_KEY = os.getenv(LOCAL_KEY)
-VERSION = float(os.getenv(VERSION))
+DEVICE_ID = os.getenv("DEVICE_ID")
+DEVICE_IP = os.getenv("DEVICE_IP")
+LOCAL_KEY = os.getenv("LOCAL_KEY")
+VERSION = float(os.getenv("VERSION"))
 
 
 miernik = tinytuya.OutletDevice(DEVICE_ID, DEVICE_IP, LOCAL_KEY)
@@ -33,7 +33,7 @@ def pobierz_dane_tuya():
             return {
                 "success": True,
                 "napiecie": dps.get("20", dps.get("6", 0)) / 10.0,
-                "prad": dps.get("18", dps.get("4", 0)) / 1000.0,
+                "prad": round(dps.get("18", dps.get("4", 0)) / 1000.0, 2),
                 "moc": dps.get("19", dps.get("5", 0)) / 10.0,
                 "zuzycie": dps.get("17", 0) / 100.0,
             }
@@ -53,3 +53,8 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         pass
 
+
+@app.get('/pwr')
+def get_data():
+    dane = pobierz_dane_tuya()
+    return dane

@@ -1,7 +1,7 @@
 services:
-  fastapi-tuya:
+  fastapi:
     build: .
-    container_name: pwr-consumption-api
+    container_name: pwr-consumption
     network_mode: host
     env_file:
       - .env
