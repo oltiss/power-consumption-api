@@ -1,0 +1,48 @@
+{
+    "timestamp": 1779557150.861797,
+    "devices": [
+        {
+            "id": "bf900e4188fb9a2cd4wman",
+            "ip": "192.168.226.149",
+            "uuid": "0b8f4c523d48f8c7",
+            "active": 2,
+            "encrypt": true,
+            "productKey": "keyge8wsy99n5pr7",
+            "token": true,
+            "wf_cfg": true,
+            "sl": 0,
+            "clientLink": 3,
+            "name": "smart plug",
+            "key": "dFDlt8$gQxg1eqHk",
+            "mac": "c0:f8:53:5f:38:f5",
+            "ability": 0,
+            "dev_type": "default",
+            "err": "",
+            "type": "default",
+            "dps": {
+                "dps": {
+                    "1": true,
+                    "9": 0,
+                    "17": 1,
+                    "18": 0,
+                    "19": 0,
+                    "20": 2310,
+                    "21": 1,
+                    "22": 564,
+                    "23": 27322,
+                    "24": 14989,
+                    "25": 2770,
+                    "26": 0,
+                    "38": "memory",
+                    "39": false,
+                    "41": false,
+                    "42": "",
+                    "43": "",
+                    "44": ""
+                }
+            },
+            "origin": "broadcast",
+            "ver": "3.5"
+        }
+    ]
+}
