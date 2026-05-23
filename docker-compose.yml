@@ -1,0 +1,10 @@
+services:
+  fastapi-tuya:
+    build: .
+    container_name: pwr-consumption-api
+    network_mode: host
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: unless-stopped

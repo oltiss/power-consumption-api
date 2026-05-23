@@ -1,7 +1,7 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-import tinytuya
+import tinytuya, os
 
 app = FastAPI()
 
@@ -15,10 +15,15 @@ app.add_middleware(
 
 load_dotenv()
 
-DEVICE_ID = "bf900e4188fb9a2cd4wman"
-DEVICE_IP = "192.168.226.149"
-LOCAL_KEY = "dFDlt8$gQxg1eqHk"
-VERSION = 3.5
+DEVICE_ID = os.getenv(DEVICE_ID)
+DEVICE_IP = os.getenv(DEVICE_IP)
+LOCAL_KEY = os.getenv(LOCAL_KEY)
+VERSION = float(os.getenv(VERSION))
+
+
+miernik = tinytuya.OutletDevice(DEVICE_ID, DEVICE_IP, LOCAL_KEY)
+miernik.set_version(VERSION)
+status = miernik.status()
 
 def pobierz_dane_tuya():
     try:
@@ -30,7 +35,7 @@ def pobierz_dane_tuya():
                 "napiecie": dps.get("20", dps.get("6", 0)) / 10.0,
                 "prad": dps.get("18", dps.get("4", 0)) / 1000.0,
                 "moc": dps.get("19", dps.get("5", 0)) / 10.0,
-                "calkowite": dps.get("17", 0) / 100.0,
+                "zuzycie": dps.get("17", 0) / 100.0,
             }
         return {"success": False, "error": "Brak dps"}
     except Exception as e:
