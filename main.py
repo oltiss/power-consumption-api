@@ -49,7 +49,7 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             dane = pobierz_dane_tuya()
             await websocket.send_json(dane)
-            await asyncio.sleep(2)
+            await asyncio.sleep(1)
     except WebSocketDisconnect:
         pass
 
